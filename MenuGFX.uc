@@ -39,5 +39,5 @@ DefaultProperties
         //this is the HUD. If the HUD is off, then this should be off
        // bDisplayWithHudOff=false
         //The path to the swf asset we will create later
-        MovieInfo=SwfMovie'Hotshot.Test'
+        MovieInfo=SwfMovie'Hotshot.MainScreen'
 }

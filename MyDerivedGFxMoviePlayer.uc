@@ -1,4 +1,8 @@
-class MyDerivedGFxMoviePlayer extends GFxMoviePlayer;
+class MyDerivedGFxMoviePlayer extends GFxMoviePlayer
+    dependson(DB_DLLAPI)
+    config(Database);
+var WorldInfo ThisWorld;
+var SQLProject_Manager mSQLProject_Manager;
 
 // Called from elsewhere in script to initialize the movie
 event InitializeMoviePlayer()
@@ -9,14 +13,28 @@ event InitializeMoviePlayer()
 
 // ...
 
-delegate bool FancyThingsDelegate(String username, String password);
 
-function bool DoFancyThings(String username, String password)
+//Called from STHUD'd PostBeginPlay()
+function Init2()
 {
-     // Code goes here...
-     if (username == "username" && password == "password")
-        return true;
-     return false;
+	//Start and load the SWF Movie
+	Start();
+	Advance(0.f);
+	
+	ThisWorld = GetPC().WorldInfo;
+
+}
+delegate FancyThingsDelegate(String username, String password);
+
+function DoFancyThings(String username, String password)
+{
+     local bool Valid;
+     Valid = mSQLProject_Manager.validateUserPass(username, password);
+
+        if(Valid)
+         ActionScriptVoid("OK") ;
+
+         `log(Valid);
 }
 
 function SetupASDelegate(delegate<FancyThingsDelegate> d)
@@ -25,4 +43,15 @@ function SetupASDelegate(delegate<FancyThingsDelegate> d)
 
      RootObj = GetVariableObject("_root");
      ActionScriptSetFunction(RootObj, "DoFancyThings");
+}
+
+function PostBeginPlay()
+{
+    mSQLProject_Manager.TestDatabase();
+    DoFancyThings("sdsdgdgsgsg", "asffa");
+
+}
+
+DefaultProperties
+{
 }
