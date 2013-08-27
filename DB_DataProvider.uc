@@ -144,7 +144,7 @@ function fill(int aResultIdx, out SDataSet aDataSet)
         switch(aDataSet.ColumnTypes[il])
         {
           case 0:
-            lNewDataItem.Data[il] = "";
+            lNewDataItem.Data[il] = ""; 
             break;
           case 1:
             mDLLAPI.GetIntVal(aResultIdx, aDataSet.ColumnNames[il], lNewIntVal);

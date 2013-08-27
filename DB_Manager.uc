@@ -46,7 +46,7 @@ function PostBeginPlay()
   // mDLLAPI.InitDriver(mDefaultDatabaseDriver);
 
   // mDLLAPI.Connect("<IP>;<User>;<Pass>;<Database>;<Port>;"); // MySQL: Connect to remote database
-`log("ABdfhhdfhhddhCD:" );
+
   mDataProviders.Length = 0;
 }
 
